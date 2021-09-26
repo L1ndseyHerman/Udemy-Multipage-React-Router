@@ -1,9 +1,12 @@
 // {Route} is a component somehow?!
+
 //  Switch prevents mult Routes from being active at the same time!
 //  It matches the first Route it finds though, so may need to re-order them!
 //  Or use "exact" as a prop. Sets it to true, makes Switch look for an exact match 
 //  instead of just contained in it.
-import {Route, Switch} from 'react-router-dom';
+
+//  Redirect changes the url to a different url when used as a component in the return.
+import {Route, Switch, Redirect} from 'react-router-dom';
 
 import Welcome from './pages/Welcome';
 import Products from './pages/Products';
@@ -21,6 +24,9 @@ function App() {
       <MainHeader />
       <main>
         <Switch>
+          <Route path="/" exact>
+            <Redirect to='/welcome' />
+          </Route>
           <Route path="/welcome">
             <Welcome />
           </Route>
