@@ -1,5 +1,9 @@
 // {Route} is a component somehow?!
-import {Route} from 'react-router-dom';
+//  Switch prevents mult Routes from being active at the same time!
+//  It matches the first Route it finds though, so may need to re-order them!
+//  Or use "exact" as a prop. Sets it to true, makes Switch look for an exact match 
+//  instead of just contained in it.
+import {Route, Switch} from 'react-router-dom';
 
 import Welcome from './pages/Welcome';
 import Products from './pages/Products';
@@ -16,15 +20,17 @@ function App() {
     <div>
       <MainHeader />
       <main>
-        <Route path="/welcome">
-          <Welcome />
-        </Route>
-        <Route path="/products">
-          <Products />
-        </Route>
-        <Route path="/product-detail/:productId">
-          <ProductDetail />
-        </Route>
+        <Switch>
+          <Route path="/welcome">
+            <Welcome />
+          </Route>
+          <Route path="/products" exact>
+            <Products />
+          </Route>
+          <Route path="/products/:productId">
+            <ProductDetail />
+          </Route>
+        </Switch>
       </main>
     </div>
   );
